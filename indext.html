@@ -1,0 +1,314 @@
+!DOCTYPE html
+html lang=es
+head
+meta charset=UTF-8
+meta name=viewport content=width=device-width, initial-scale=1.0
+titleTalleres — Congreso HeLa 2026title
+link rel=preconnect href=httpsfonts.googleapis.com
+link href=httpsfonts.googleapis.comcss2family=Outfitwght@400;500;600;700&family=DM+Sanswght@400;500&display=swap rel=stylesheet
+style
+,before,after{box-sizingborder-box;margin0;padding0}
+root{
+  --cream#F5F0E8;--cream-dark#EDE7D9;--blue-light#C8DCF0;
+  --blue-mid#4A90C4;--blue-strong#1B4F82;--blue-deep#0F2F50;
+  --green-soft#C8E6C9;--green-mid#4CAF50;
+  --text-dark#0F2F50;--text-mid#3A5A78;--text-muted#6B8DAA;
+  --error#C0392B;--error-bg#FDEDEC;--radius14px;--radius-sm8px;
+}
+body{font-family'DM Sans',sans-serif;backgroundvar(--cream);colorvar(--text-dark);min-height100vh;}
+bodybefore{content'';positionfixed;inset0;background-imageradial-gradient(circle at 20% 20%,rgba(74,144,196,.08) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(27,79,130,.06) 0%,transparent 50%);pointer-eventsnone;z-index0;}
+.container{max-width660px;margin0 auto;padding28px 16px 48px;positionrelative;z-index1;}
+@media(min-width768px){.container{max-width860px;padding40px 32px 64px}}
+.header{text-aligncenter;margin-bottom36px;animationslideDown .5s ease both}
+.header-badge{displayinline-block;backgroundvar(--blue-strong);colorwhite;font-family'Outfit',sans-serif;font-size.7rem;font-weight600;letter-spacing.1em;text-transformuppercase;padding5px 14px;border-radius99px;margin-bottom14px;}
+.header-logo{displayflex;align-itemscenter;justify-contentcenter;gap10px;margin-bottom8px}
+.header-logo svg{width36px;height36px}
+.header h1{font-family'Outfit',sans-serif;font-size1.75rem;font-weight700;colorvar(--blue-deep);letter-spacing-.02em;line-height1.2;}
+.header h1 span{colorvar(--blue-mid)}
+.header p{colorvar(--text-muted);font-size.9rem;margin-top6px}
+.card{backgroundwhite;border-radiusvar(--radius);border1px solid rgba(74,144,196,.15);padding28px 24px;box-shadow0 2px 16px rgba(15,47,80,.06);animationfadeUp .4s ease both;}
+.screen{displaynone}.screen.active{displayblock}
+@keyframes fadeUp{from{opacity0;transformtranslateY(16px)}to{opacity1;transformtranslateY(0)}}
+@keyframes slideDown{from{opacity0;transformtranslateY(-12px)}to{opacity1;transformtranslateY(0)}}
+.field-label{font-family'Outfit',sans-serif;font-size.8rem;font-weight600;letter-spacing.06em;text-transformuppercase;colorvar(--text-mid);displayblock;margin-bottom8px;}
+.input-wrap{displayflex;gap10px;margin-bottom4px}
+.clave-input{flex1;padding13px 16px;border1.5px solid var(--blue-light);border-radiusvar(--radius-sm);font-family'DM Sans',sans-serif;font-size1rem;colorvar(--text-dark);backgroundvar(--cream);outlinenone;transitionborder-color .2s,box-shadow .2s;letter-spacing.05em;}
+.clave-inputfocus{border-colorvar(--blue-mid);box-shadow0 0 0 3px rgba(74,144,196,.15);backgroundwhite;}
+.clave-inputplaceholder{colorvar(--text-muted);letter-spacingnormal}
+.btn{padding13px 22px;bordernone;border-radiusvar(--radius-sm);font-family'Outfit',sans-serif;font-size.95rem;font-weight600;cursorpointer;transitionall .2s;displayinline-flex;align-itemscenter;justify-contentcenter;gap8px;white-spacenowrap;}
+.btn-primary{backgroundvar(--blue-strong);colorwhite}
+.btn-primaryhover{backgroundvar(--blue-deep);transformtranslateY(-1px);box-shadow0 4px 12px rgba(27,79,130,.25)}
+.btn-outline{backgroundtransparent;border1.5px solid var(--blue-light);colorvar(--text-mid)}
+.btn-outlinehover{backgroundvar(--cream);border-colorvar(--blue-mid)}
+.btn-success{backgroundvar(--green-mid);colorwhite}
+.btn-successhover{background#43A047;transformtranslateY(-1px);box-shadow0 4px 12px rgba(76,175,80,.3)}
+.btn-block{width100%}
+.btn-disabled{backgroundvar(--cream-dark);colorvar(--text-muted);cursornot-allowed;border1.5px dashed #ccc}
+.spinner{width18px;height18px;border2.5px solid rgba(255,255,255,.35);border-top-colorwhite;border-radius50%;animationspin .6s linear infinite;displayinline-block;flex-shrink0;}
+.spinner-blue{border-colorrgba(74,144,196,.2);border-top-colorvar(--blue-mid)}
+@keyframes spin{to{transformrotate(360deg)}}
+.loading-center{displayflex;flex-directioncolumn;align-itemscenter;gap12px;padding32px 0;}
+.loading-center p{colorvar(--text-muted);font-size.9rem}
+.alert{border-radiusvar(--radius-sm);padding14px 16px;margin-top14px;font-size.9rem;displaynone}
+.alert-error{backgroundvar(--error-bg);border1px solid #F5B7B1;colorvar(--error)}
+.alert-error p{font-weight500;margin-bottom10px}
+.alert-success{background#EBF5FB;border1px solid var(--blue-light);colorvar(--blue-strong);text-aligncenter}
+.alert-success .check-icon{font-size1.6rem;margin-bottom6px}
+.alert-success strong{displayblock;margin-top4px}
+.greeting{font-family'Outfit',sans-serif;font-size1.25rem;font-weight700;colorvar(--blue-deep);margin-bottom6px;}
+.greeting-sub{font-size.88rem;colorvar(--text-muted);margin-bottom22px}
+.grid{displaygrid;grid-template-columns1fr 1fr;gap12px}
+@media(min-width600px){.grid{grid-template-columnsrepeat(3,1fr);gap14px}}
+.taller-card{backgroundvar(--cream);border1.5px solid var(--blue-light);border-radiusvar(--radius);padding16px;displayflex;flex-directioncolumn;gap10px;transitionbox-shadow .2s,transform .2s,border-color .2s;}
+.taller-cardhover{box-shadow0 4px 16px rgba(15,47,80,.1);transformtranslateY(-2px);border-colorvar(--blue-mid);}
+.taller-card.lleno{opacity.6;backgroundwhite;border-styledashed}
+.taller-card.llenohover{transformnone;box-shadownone}
+.taller-name{font-family'Outfit',sans-serif;font-weight600;font-size.9rem;colorvar(--blue-deep);line-height1.3}
+.taller-slots{font-size.78rem;colorvar(--text-muted)}.taller-slots strong{colorvar(--text-mid)}
+.progress-track{height5px;backgroundvar(--blue-light);border-radius3px;overflowhidden}
+.progress-bar{height100%;backgroundvar(--blue-mid);border-radius3px;transitionwidth .5s ease}
+.progress-bar.casi-lleno{background#E67E22}.progress-bar.lleno-bar{background#C0392B}
+.taller-card .btn{padding9px 12px;font-size.82rem;margin-topauto}
+.modal-overlay{positionfixed;inset0;backgroundrgba(15,47,80,.45);displaynone;align-itemscenter;justify-contentcenter;z-index100;padding16px;}
+.modal-overlay.active{displayflex}
+.modal{backgroundwhite;border-radiusvar(--radius);padding28px 24px;max-width400px;width100%;box-shadow0 20px 60px rgba(15,47,80,.2);animationfadeUp .25s ease;text-aligncenter;}
+.modal-icon{font-size2.2rem;margin-bottom10px}
+.modal h3{font-family'Outfit',sans-serif;font-size1.1rem;font-weight700;colorvar(--blue-deep);margin-bottom8px}
+.modal p{colorvar(--text-muted);font-size.9rem;margin-bottom22px;line-height1.5}
+.modal p strong{colorvar(--blue-strong)}
+.modal-actions{displayflex;gap10px}.modal-actions .btn{flex1}
+.success-screen{text-aligncenter;padding32px 0 16px}
+.success-anim{width72px;height72px;backgroundvar(--green-soft);border-radius50%;displayflex;align-itemscenter;justify-contentcenter;margin0 auto 20px;font-size2rem;animationpopIn .5s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes popIn{from{opacity0;transformscale(.4)}to{opacity1;transformscale(1)}}
+.success-screen h2{font-family'Outfit',sans-serif;font-size1.4rem;font-weight700;colorvar(--blue-deep);margin-bottom8px}
+.success-taller{displayinline-block;backgroundvar(--blue-light);colorvar(--blue-strong);font-family'Outfit',sans-serif;font-weight700;font-size1rem;padding8px 20px;border-radius99px;margin-bottom14px;}
+.success-msg{colorvar(--text-muted);font-size.9rem;line-height1.6}
+.hint{font-size.78rem;colorvar(--text-muted);text-aligncenter;margin-top10px}
+style
+head
+body
+div class=container
+
+div class=header
+  div class=header-badge10° Congreso de Ingeniería Biomédicadiv
+  div class=header-logo style=display flex; align-items center; justify-content center;
+    span style=color #1B4F82; font-size 2.5rem; margin-right 12px; line-height 1;★span
+    h1 style=margin 0;HeLa span style=color #4A90C4;2026spanh1
+  div
+  pInscripciones Talleres &middot; 21 de abril &middot; Hermosillo, Sonorap
+div
+
+  div id=screen-clave class=screen active
+    div class=card
+      label class=field-label for=input-claveTu clave de accesolabel
+      div class=input-wrap
+        input type=text id=input-clave class=clave-input placeholder=HELA-XXXXX
+          autocomplete=off autocapitalize=characters spellcheck=false autofocus
+        button class=btn btn-primary id=btn-acceder onclick=verificarClave()Accederbutton
+      div
+      p class=hintIngresa la clave que recibiste en tu comprobante de carnetp
+      div id=loading-clave class=loading-center style=displaynone
+        div class=spinner spinner-bluediv
+        pVerificando clave…p
+      div
+      div id=error-clave class=alert alert-error
+        pClave no encontrada. Verifica que la hayas escrito correctamente.p
+        button class=btn btn-outline onclick=reintentar()Intentar de nuevobutton
+      div
+      div id=ya-inscrito class=alert alert-success
+        div class=check-icon&#9989;div
+        pYa tienes lugar reservado enp
+        strong id=taller-ya style=font-family'Outfit',sans-serif;font-size1rem;colorvar(--blue-strong)strong
+        p style=margin-top8px;font-size.82rem;colorvar(--text-muted)¿Dudas congresohela@gmail.comp
+      div
+    div
+  div
+
+  div id=screen-talleres class=screen
+    div class=card style=margin-bottom16px
+      p class=greeting id=saludop
+      p class=greeting-subSelecciona el taller de tu preferencia. Una vez confirmado no podrás cambiarlo.p
+    div
+    div id=loading-talleres class=loading-center
+      div class=spinner spinner-bluediv
+      pCargando talleres disponibles…p
+    div
+    div class=grid id=grid-talleresdiv
+  div
+
+  div id=screen-exito class=screen
+    div class=card
+      div class=success-screen
+        div class=success-anim&#10003;div
+        h2¡Inscripción exitosa!h2
+        div class=success-taller id=exito-tallerdiv
+        p class=success-msg
+          Tu lugar ha sido reservado.br
+          Recibirás más detalles sobre el taller durante el congreso.brbr
+          span style=font-size.82rem¿Dudas a href=mailtocongresohela@gmail.com style=colorvar(--blue-mid)congresohela@gmail.comaspan
+        p
+      div
+    div
+  div
+
+div
+
+div class=modal-overlay id=modal
+  div class=modal
+    div class=modal-icon&#128278;div
+    h3Confirmar inscripciónh3
+    p¿Confirmas tu lugar enbrstrong id=modal-tallerstrongbr
+    span style=font-size.82rem;margin-top4px;displayblockEsta acción no se puede deshacer.spanp
+    div class=modal-actions
+      button class=btn btn-outline onclick=cerrarModal()Cancelarbutton
+      button class=btn btn-success id=btn-confirmar onclick=confirmarInscripcion()Sí, confirmarbutton
+    div
+  div
+div
+
+script
+ Cuando el HTML vive dentro de Apps Script, usamos google.script.run
+ en lugar de fetch para evitar bloqueos CORS.
+
+var claveActual = '';
+var nombreActual = '';
+var telefonoActual = '';
+var tallerSeleccionado = '';
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) {
+    s.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+}
+
+function setLoading(loading) {
+  document.getElementById('btn-acceder').style.display = loading  'none'  '';
+  document.getElementById('input-clave').disabled = loading;
+  document.getElementById('loading-clave').style.display = loading  'flex'  'none';
+}
+
+function verificarClave() {
+  var clave = document.getElementById('input-clave').value.trim().toUpperCase();
+  if (!clave) { document.getElementById('input-clave').focus(); return; }
+  claveActual = clave;
+  document.getElementById('error-clave').style.display = 'none';
+  document.getElementById('ya-inscrito').style.display = 'none';
+  setLoading(true);
+
+  google.script.run
+    .withSuccessHandler(function(data) {
+      setLoading(false);
+      if (!data  data.msg === 'clave_invalida'  data.error) {
+        document.getElementById('error-clave').style.display = 'block';
+      } else if (data.msg === 'ya_inscrito') {
+        document.getElementById('taller-ya').textContent = data.taller  '';
+        document.getElementById('ya-inscrito').style.display = 'block';
+      } else if (data.ok) {
+        nombreActual = data.nombre  '';
+        telefonoActual = data.telefono  '';
+        document.getElementById('saludo').textContent = '¡Hola, ' + nombreActual + '!';
+        showScreen('screen-talleres');
+        cargarTalleres();
+      }
+    })
+    .withFailureHandler(function(err) {
+      setLoading(false);
+      document.getElementById('error-clave').style.display = 'block';
+    })
+    .verificarClave(clave, 'talleres');
+}
+
+function reintentar() {
+  document.getElementById('error-clave').style.display = 'none';
+  document.getElementById('ya-inscrito').style.display = 'none';
+  setLoading(false);
+  var input = document.getElementById('input-clave');
+  input.value = '';
+  input.focus();
+}
+
+function cargarTalleres() {
+  var grid = document.getElementById('grid-talleres');
+  var loading = document.getElementById('loading-talleres');
+  grid.innerHTML = '';
+  loading.style.display = 'flex';
+
+  google.script.run
+    .withSuccessHandler(function(talleres) {
+      loading.style.display = 'none';
+      if (!talleres  !talleres.length) {
+        grid.innerHTML = 'p style=colorvar(--text-muted);font-size.9remNo hay talleres disponibles.p';
+        return;
+      }
+      talleres.forEach(function(t, i) {
+        var libres = typeof t.libres !== 'undefined'  t.libres  (t.cupo - t.ocupados);
+        var total = t.cupo  0;
+        var ocupados = t.ocupados  0;
+        var pct = total  0  Math.round((ocupados  total)  100)  100;
+        var hayCupo = libres  0;
+        var barClass = 'progress-bar' + (pct = 100  ' lleno-bar'  pct = 70  ' casi-lleno'  '');
+        var card = document.createElement('div');
+        card.className = 'taller-card' + (hayCupo  ''  ' lleno');
+        card.style.animation = 'fadeUp .4s ease ' + (i  0.05) + 's both';
+        card.innerHTML =
+          'div class=taller-name' + t.nombre + 'div' +
+          'div class=taller-slotsstrong' + libres + 'strong de ' + total + ' lugaresdiv' +
+          'div class=progress-trackdiv class=' + barClass + ' style=width' + pct + '%divdiv' +
+          (hayCupo
+             'button class=btn btn-success onclick=abrirModal('' + t.nombre.replace('g,') + '')Seleccionarbutton'
+             'button class=btn btn-disabled disabledSin cupobutton');
+        grid.appendChild(card);
+      });
+    })
+    .withFailureHandler(function(err) {
+      loading.innerHTML = 'p style=colorvar(--error);font-size.9remError al cargar talleres. Recarga la página.p';
+    })
+    .obtenerCupos('talleres');
+}
+
+function abrirModal(nombre) {
+  tallerSeleccionado = nombre;
+  document.getElementById('modal-taller').textContent = nombre;
+  document.getElementById('modal').classList.add('active');
+}
+
+function cerrarModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+function confirmarInscripcion() {
+  var btn = document.getElementById('btn-confirmar');
+  btn.disabled = true;
+  btn.innerHTML = 'div class=spinnerdiv Registrando…';
+
+  google.script.run
+    .withSuccessHandler(function(data) {
+      cerrarModal();
+      btn.disabled = false;
+      btn.innerHTML = 'Sí, confirmar';
+      if (data.msg === 'sin_cupo') {
+        alert('Este taller ya no tiene cupo. Por favor elige otro.');
+        cargarTalleres();
+      } else if (data.msg === 'ya_inscrito'  !data.ok) {
+        alert('Hubo un problema al registrarte. Intenta de nuevo.');
+      } else {
+        document.getElementById('exito-taller').textContent = tallerSeleccionado;
+        showScreen('screen-exito');
+      }
+    })
+    .withFailureHandler(function(err) {
+      cerrarModal();
+      btn.disabled = false;
+      btn.innerHTML = 'Sí, confirmar';
+      alert('Error de conexión. Intenta de nuevo.');
+    })
+    .inscribir(claveActual, tallerSeleccionado, nombreActual, telefonoActual, 'talleres');
+}
+
+document.getElementById('input-clave').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') verificarClave();
+});
+script
+body
+html

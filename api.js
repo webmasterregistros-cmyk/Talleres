@@ -9,7 +9,7 @@
    → Ejecutar como: Yo  |  Quién tiene acceso: Cualquier usuario
    ============================================================ */
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmDuZ97z9nf0YKUe4aVl1PhewSzwlPMZnBjf-7M2UTGlYd9G8h6ZBXGsrwp4GYB45Ksw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxY40FT57uqYMkduCmwi5h6IvoI3S9FjdmDFcgm0Y4UDm_MlRrdaG-i5iY9Dtsi2qHHlQ/exec';
 
 /**
  * Llama al Apps Script con los parámetros dados.

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visitas Empresariales — Congreso HeLa 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F5F0E8;--cream-dark:#EDE7D9;--blue-light:#C8DCF0;
+  --blue-mid:#4A90C4;--blue-strong:#1B4F82;--blue-deep:#0F2F50;
+  --green-soft:#C8E6C9;--green-mid:#4CAF50;
+  --text-dark:#0F2F50;--text-mid:#3A5A78;--text-muted:#6B8DAA;
+  --error:#C0392B;--error-bg:#FDEDEC;--radius:14px;--radius-sm:8px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(74,144,196,.08) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(27,79,130,.06) 0%,transparent 50%);pointer-events:none;z-index:0;}
+.container{max-width:660px;margin:0 auto;padding:28px 16px 48px;position:relative;z-index:1;}
+@media(min-width:768px){.container{max-width:860px;padding:40px 32px 64px}}
+.header{text-align:center;margin-bottom:36px;animation:slideDown .5s ease both}
+.header-badge{display:inline-block;background:var(--blue-strong);color:white;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:14px;}
+.header h1{font-family:'Outfit',sans-serif;font-size:1.75rem;font-weight:700;color:var(--blue-deep);letter-spacing:-.02em;line-height:1.2;}
+.header h1 span{color:var(--blue-mid)}
+.header p{color:var(--text-muted);font-size:.9rem;margin-top:6px}
+.card{background:white;border-radius:var(--radius);border:1px solid rgba(74,144,196,.15);padding:28px 24px;box-shadow:0 2px 16px rgba(15,47,80,.06);animation:fadeUp .4s ease both;}
+.screen{display:none}.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.field-label{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mid);display:block;margin-bottom:8px;}
+.input-wrap{display:flex;gap:10px;margin-bottom:4px}
+.clave-input{flex:1;padding:13px 16px;border:1.5px solid var(--blue-light);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--text-dark);background:var(--cream);outline:none;transition:border-color .2s,box-shadow .2s;letter-spacing:.05em;}
+.clave-input:focus{border-color:var(--blue-mid);box-shadow:0 0 0 3px rgba(74,144,196,.15);background:white;}
+.clave-input::placeholder{color:var(--text-muted);letter-spacing:normal}
+.btn{padding:13px 22px;border:none;border-radius:var(--radius-sm);font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;}
+.btn-primary{background:var(--blue-strong);color:white}
+.btn-primary:hover{background:var(--blue-deep);transform:translateY(-1px);box-shadow:0 4px 12px rgba(27,79,130,.25)}
+.btn-outline{background:transparent;border:1.5px solid var(--blue-light);color:var(--text-mid)}
+.btn-outline:hover{background:var(--cream);border-color:var(--blue-mid)}
+.btn-success{background:var(--green-mid);color:white}
+.btn-success:hover{background:#43A047;transform:translateY(-1px);box-shadow:0 4px 12px rgba(76,175,80,.3)}
+.btn-block{width:100%}
+.btn-disabled{background:var(--cream-dark);color:var(--text-muted);cursor:not-allowed;border:1.5px dashed #ccc}
+.spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:white;border-radius:50%;animation:spin .6s linear infinite;display:inline-block;flex-shrink:0;}
+.spinner-blue{border-color:rgba(74,144,196,.2);border-top-color:var(--blue-mid)}
+.loading-center{display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 0;}
+.loading-center p{color:var(--text-muted);font-size:.9rem}
+.alert{border-radius:var(--radius-sm);padding:14px 16px;margin-top:14px;font-size:.9rem;display:none}
+.alert-error{background:var(--error-bg);border:1px solid #F5B7B1;color:var(--error)}
+.alert-error p{font-weight:500;margin-bottom:10px}
+.alert-success{background:#EBF5FB;border:1px solid var(--blue-light);color:var(--blue-strong);text-align:center}
+.alert-success .check-icon{font-size:1.6rem;margin-bottom:6px}
+.alert-success strong{display:block;margin-top:4px}
+.greeting{font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:700;color:var(--blue-deep);margin-bottom:6px;}
+.greeting-sub{font-size:.88rem;color:var(--text-muted);margin-bottom:22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,1fr);gap:14px}}
+.taller-card{background:var(--cream);border:1.5px solid var(--blue-light);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,transform .2s,border-color .2s;}
+.taller-card:hover{box-shadow:0 4px 16px rgba(15,47,80,.1);transform:translateY(-2px);border-color:var(--blue-mid);}
+.taller-card.lleno{opacity:.6;background:white;border-style:dashed}
+.taller-card.lleno:hover{transform:none;box-shadow:none}
+.taller-name{font-family:'Outfit',sans-serif;font-weight:600;font-size:.9rem;color:var(--blue-deep);line-height:1.3}
+.taller-slots{font-size:.78rem;color:var(--text-muted)}.taller-slots strong{color:var(--text-mid)}
+.progress-track{height:5px;background:var(--blue-light);border-radius:3px;overflow:hidden}
+.progress-bar{height:100%;background:var(--blue-mid);border-radius:3px;transition:width .5s ease}
+.progress-bar.casi-lleno{background:#E67E22}.progress-bar.lleno-bar{background:#C0392B}
+.taller-card .btn{padding:9px 12px;font-size:.82rem;margin-top:auto}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,47,80,.45);display:none;align-items:center;justify-content:center;z-index:100;padding:16px;}
+.modal-overlay.active{display:flex}
+.modal{background:white;border-radius:var(--radius);padding:28px 24px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(15,47,80,.2);animation:fadeUp .25s ease;text-align:center;}
+.modal-icon{font-size:2.2rem;margin-bottom:10px}
+.modal h3{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-deep);margin-bottom:8px}
+.modal p{color:var(--text-muted);font-size:.9rem;margin-bottom:22px;line-height:1.5}
+.modal p strong{color:var(--blue-strong)}
+.modal-actions{display:flex;gap:10px}.modal-actions .btn{flex:1}
+.success-screen{text-align:center;padding:32px 0 16px}
+.success-anim{width:72px;height:72px;background:var(--green-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem;animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both;}
+.success-screen h2{font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:700;color:var(--blue-deep);margin-bottom:8px}
+.success-taller{display:inline-block;background:var(--blue-light);color:var(--blue-strong);font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;padding:8px 20px;border-radius:99px;margin-bottom:14px;}
+.success-msg{color:var(--text-muted);font-size:.9rem;line-height:1.6}
+.hint{font-size:.78rem;color:var(--text-muted);text-align:center;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-badge">10° Congreso de Ingeniería Biomédica</div>
+    <div style="display:flex;align-items:center;justify-content:center;margin-bottom:8px;">
+      <span style="color:#1B4F82;font-size:2.5rem;margin-right:12px;line-height:1;">★</span>
+      <h1 style="margin:0;font-family:'Outfit',sans-serif;font-size:1.75rem;font-weight:700;color:#0F2F50;letter-spacing:-.02em;">HeLa <span style="color:#4A90C4;">2026</span></h1>
+    </div>
+    <p>Inscripciones a Visitas Empresariales &middot; 23 de abril &middot; Hermosillo, Sonora</p>
+  </div>
+
+  <!-- PANTALLA 1: Clave -->
+  <div id="screen-clave" class="screen active">
+    <div class="card">
+      <label class="field-label" for="input-clave">Tu clave de acceso</label>
+      <div class="input-wrap">
+        <input type="text" id="input-clave" class="clave-input" placeholder="HELA-XXXXX"
+          autocomplete="off" autocapitalize="characters" spellcheck="false" autofocus>
+        <button class="btn btn-primary" id="btn-acceder">Acceder</button>
+      </div>
+      <p class="hint">Ingresa la clave que recibiste en tu comprobante de carnet</p>
+      <div id="loading-clave" class="loading-center" style="display:none">
+        <div class="spinner spinner-blue"></div>
+        <p>Verificando clave…</p>
+      </div>
+      <div id="error-clave" class="alert alert-error">
+        <p>Clave no encontrada. Verifica que la hayas escrito correctamente.</p>
+        <button class="btn btn-outline" onclick="reintentar()">Intentar de nuevo</button>
+      </div>
+      <div id="ya-inscrito" class="alert alert-success">
+        <div class="check-icon">&#9989;</div>
+        <p>Ya tienes lugar reservado en:</p>
+        <strong id="taller-ya" style="font-family:'Outfit',sans-serif;font-size:1rem;color:var(--blue-strong)"></strong>
+        <p style="margin-top:8px;font-size:.82rem;color:var(--text-muted)">¿Dudas? congresohela@gmail.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANTALLA 2: Selección de visita -->
+  <div id="screen-talleres" class="screen">
+    <div class="card" style="margin-bottom:16px">
+      <p class="greeting" id="saludo"></p>
+      <p class="greeting-sub">Selecciona tu Visita Empresarial de tu preferencia. Una vez confirmada no podrás cambiarla.</p>
+    </div>
+    <div id="loading-talleres" class="loading-center">
+      <div class="spinner spinner-blue"></div>
+      <p>Cargando visitas disponibles…</p>
+    </div>
+    <div class="grid" id="grid-talleres"></div>
+  </div>
+
+  <!-- PANTALLA 3: Éxito -->
+  <div id="screen-exito" class="screen">
+    <div class="card">
+      <div class="success-screen">
+        <div class="success-anim">&#10003;</div>
+        <h2>¡Inscripción exitosa!</h2>
+        <div class="success-taller" id="exito-taller"></div>
+        <p class="success-msg">
+          Tu lugar ha sido reservado.<br>
+          Recibirás más detalles sobre la visita durante el congreso.<br><br>
+          <span style="font-size:.82rem">¿Dudas? <a href="mailto:congresohela@gmail.com" style="color:var(--blue-mid)">congresohela@gmail.com</a></span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-icon">&#128278;</div>
+    <h3>Confirmar inscripción</h3>
+    <p>¿Confirmas tu lugar en<br><strong id="modal-taller"></strong>?<br>
+    <span style="font-size:.82rem;margin-top:4px;display:block">Esta acción no se puede deshacer.</span></p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn btn-success" id="btn-confirmar" onclick="confirmarInscripcion()">Sí, confirmar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   HeLa 2026 — API Client
+   ============================================================ */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmDuZ97z9nf0YKUe4aVl1PhewSzwlPMZnBjf-7M2UTGlYd9G8h6ZBXGsrwp4GYB45Ksw/exec';
+
+async function apiCall(params) {
+  const url = new URL(APPS_SCRIPT_URL);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  const resp = await fetch(url.toString(), { method: 'GET', redirect: 'follow' });
+  if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  return resp.json();
+}
+
+async function api_verificarClave(clave, modo) {
+  return apiCall({ accion: 'verificar', clave, modo });
+}
+async function api_obtenerCupos(modo) {
+  return apiCall({ accion: 'cupos', modo });
+}
+async function api_inscribir(clave, taller, nombre, telefono, modo) {
+  return apiCall({ accion: 'inscribir', clave, taller, nombre, telefono, modo });
+}
+
+/* ============================================================
+   HeLa 2026 — UI Logic (modo: visitas)
+   ============================================================ */
+var claveActual        = '';
+var nombreActual       = '';
+var telefonoActual     = '';
+var tallerSeleccionado = '';
+var __modo             = 'visitas';
+
+/* ── Helpers ── */
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escapeSingle(str) {
+  return String(str).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+}
+
+function setLoading(loading) {
+  document.getElementById('btn-acceder').style.display = loading ? 'none' : '';
+  document.getElementById('input-clave').disabled = loading;
+  document.getElementById('loading-clave').style.display = loading ? 'flex' : 'none';
+}
+
+/* ── Verificar clave ── */
+async function verificarClave() {
+  var clave = document.getElementById('input-clave').value.trim().toUpperCase();
+  if (!clave) { document.getElementById('input-clave').focus(); return; }
+
+  claveActual = clave;
+  document.getElementById('error-clave').style.display = 'none';
+  document.getElementById('ya-inscrito').style.display  = 'none';
+  setLoading(true);
+
+  try {
+    var data = await api_verificarClave(clave, __modo);
+    setLoading(false);
+
+    if (!data || data.msg === 'clave_invalida' || data.error) {
+      document.getElementById('error-clave').style.display = 'block';
+    } else if (data.msg === 'ya_inscrito') {
+      document.getElementById('taller-ya').textContent = data.taller || '';
+      document.getElementById('ya-inscrito').style.display = 'block';
+    } else if (data.ok) {
+      nombreActual   = data.nombre   || '';
+      telefonoActual = data.telefono || '';
+      document.getElementById('saludo').textContent = '¡Hola, ' + nombreActual + '!';
+      showScreen('screen-talleres');
+      cargarOpciones();
+    }
+  } catch (err) {
+    setLoading(false);
+    document.getElementById('error-clave').style.display = 'block';
+    console.error('verificarClave error:', err);
+  }
+}
+
+function reintentar() {
+  document.getElementById('error-clave').style.display = 'none';
+  document.getElementById('ya-inscrito').style.display  = 'none';
+  setLoading(false);
+  var input = document.getElementById('input-clave');
+  input.value = '';
+  input.focus();
+}
+
+/* ── Cargar opciones ── */
+async function cargarOpciones() {
+  var grid    = document.getElementById('grid-talleres');
+  var loading = document.getElementById('loading-talleres');
+  grid.innerHTML = '';
+  loading.style.display = 'flex';
+
+  try {
+    var opciones = await api_obtenerCupos(__modo);
+    loading.style.display = 'none';
+
+    if (!opciones || !opciones.length) {
+      grid.innerHTML = '<p style="color:var(--text-muted);font-size:.9rem">No hay visitas disponibles.</p>';
+      return;
+    }
+
+    opciones.forEach(function(t, i) {
+      var libres   = typeof t.libres !== 'undefined' ? t.libres : (t.cupo - t.ocupados);
+      var total    = t.cupo    || 0;
+      var ocupados = t.ocupados || 0;
+      var pct      = total > 0 ? Math.round((ocupados / total) * 100) : 100;
+      var hayCupo  = libres > 0;
+      var barClass = 'progress-bar' + (pct >= 100 ? ' lleno-bar' : pct >= 70 ? ' casi-lleno' : '');
+
+      var card = document.createElement('div');
+      card.className = 'taller-card' + (hayCupo ? '' : ' lleno');
+      card.style.animation = 'fadeUp .4s ease ' + (i * 0.05) + 's both';
+      card.innerHTML =
+        '<div class="taller-name">'  + escapeHtml(t.nombre) + '</div>' +
+        '<div class="taller-slots"><strong>' + libres + '</strong> de ' + total + ' lugares</div>' +
+        '<div class="progress-track"><div class="' + barClass + '" style="width:' + pct + '%"></div></div>' +
+        (hayCupo
+          ? '<button class="btn btn-success" onclick="abrirModal(\'' + escapeSingle(t.nombre) + '\')">Seleccionar</button>'
+          : '<button class="btn btn-disabled" disabled>Sin cupo</button>');
+
+      grid.appendChild(card);
+    });
+
+  } catch (err) {
+    loading.innerHTML = '<p style="color:var(--error);font-size:.9rem">Error al cargar visitas. Recarga la página.</p>';
+    console.error('cargarOpciones error:', err);
+  }
+}
+
+/* ── Modal ── */
+function abrirModal(nombre) {
+  tallerSeleccionado = nombre;
+  document.getElementById('modal-taller').textContent = nombre;
+  document.getElementById('modal').classList.add('active');
+}
+
+function cerrarModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+/* ── Confirmar inscripción ── */
+async function confirmarInscripcion() {
+  var btn = document.getElementById('btn-confirmar');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div> Registrando…';
+
+  try {
+    var data = await api_inscribir(claveActual, tallerSeleccionado, nombreActual, telefonoActual, __modo);
+    cerrarModal();
+    btn.disabled = false;
+    btn.innerHTML = 'Sí, confirmar';
+
+    if (data.msg === 'sin_cupo') {
+      alert('Esta visita ya no tiene cupo. Por favor elige otra.');
+      cargarOpciones();
+    } else if (data.msg === 'ya_inscrito' || !data.ok) {
+      alert('Hubo un problema al registrarte. Intenta de nuevo.');
+    } else {
+      document.getElementById('exito-taller').textContent = tallerSeleccionado;
+      showScreen('screen-exito');
+    }
+  } catch (err) {
+    cerrarModal();
+    btn.disabled = false;
+    btn.innerHTML = 'Sí, confirmar';
+    alert('Error de conexión. Intenta de nuevo.');
+    console.error('confirmarInscripcion error:', err);
+  }
+}
+
+/* ── Init ── */
+document.getElementById('btn-acceder').addEventListener('click', verificarClave);
+document.getElementById('input-clave').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') verificarClave();
+});
+</script>
+</body>
+</html>

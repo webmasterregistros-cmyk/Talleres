@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Formulario taller adicional — Congreso HeLa 2026</title>
+<title>Formulario taller adicional — Congreso HeLa 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -22,7 +22,6 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .header{text-align:center;margin-bottom:36px;animation:slideDown .5s ease both}
 .header-badge{display:inline-block;background:var(--blue-strong);color:white;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:14px;}
 .header-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}
-.header-logo svg{width:36px;height:36px}
 .header h1{font-family:'Outfit',sans-serif;font-size:1.75rem;font-weight:700;color:var(--blue-deep);letter-spacing:-.02em;line-height:1.2;}
 .header h1 span{color:var(--blue-mid)}
 .header p{color:var(--text-muted);font-size:.9rem;margin-top:6px}
@@ -30,6 +29,8 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .screen{display:none}.screen.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes popIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
 .field-label{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mid);display:block;margin-bottom:8px;}
 .input-wrap{display:flex;gap:10px;margin-bottom:4px}
 .clave-input{flex:1;padding:13px 16px;border:1.5px solid var(--blue-light);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--text-dark);background:var(--cream);outline:none;transition:border-color .2s,box-shadow .2s;letter-spacing:.05em;}
@@ -42,11 +43,9 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .btn-outline:hover{background:var(--cream);border-color:var(--blue-mid)}
 .btn-success{background:var(--green-mid);color:white}
 .btn-success:hover{background:#43A047;transform:translateY(-1px);box-shadow:0 4px 12px rgba(76,175,80,.3)}
-.btn-block{width:100%}
 .btn-disabled{background:var(--cream-dark);color:var(--text-muted);cursor:not-allowed;border:1.5px dashed #ccc}
 .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:white;border-radius:50%;animation:spin .6s linear infinite;display:inline-block;flex-shrink:0;}
 .spinner-blue{border-color:rgba(74,144,196,.2);border-top-color:var(--blue-mid)}
-@keyframes spin{to{transform:rotate(360deg)}}
 .loading-center{display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 0;}
 .loading-center p{color:var(--text-muted);font-size:.9rem}
 .alert{border-radius:var(--radius-sm);padding:14px 16px;margin-top:14px;font-size:.9rem;display:none}
@@ -79,7 +78,6 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .modal-actions{display:flex;gap:10px}.modal-actions .btn{flex:1}
 .success-screen{text-align:center;padding:32px 0 16px}
 .success-anim{width:72px;height:72px;background:var(--green-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem;animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both;}
-@keyframes popIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
 .success-screen h2{font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:700;color:var(--blue-deep);margin-bottom:8px}
 .success-taller{display:inline-block;background:var(--blue-light);color:var(--blue-strong);font-family:'Outfit',sans-serif;font-weight:700;font-size:1rem;padding:8px 20px;border-radius:99px;margin-bottom:14px;}
 .success-msg{color:var(--text-muted);font-size:.9rem;line-height:1.6}
@@ -89,14 +87,14 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 <body>
 <div class="container">
 
-<div class="header">
-  <div class="header-badge">10° Congreso de Ingeniería Biomédica</div>
-  <div class="header-logo" style="display: flex; align-items: center; justify-content: center;">
-    <span style="color: #1B4F82; font-size: 2.5rem; margin-right: 12px; line-height: 1;">★</span>
-    <h1 style="margin: 0;">HeLa <span style="color: #4A90C4;">2026</span></h1>
+  <div class="header">
+    <div class="header-badge">10° Congreso de Ingeniería Biomédica</div>
+    <div class="header-logo" style="display:flex;align-items:center;justify-content:center;">
+      <span style="color:#1B4F82;font-size:2.5rem;margin-right:12px;line-height:1;">★</span>
+      <h1 style="margin:0;">HeLa <span style="color:#4A90C4;">2026</span></h1>
+    </div>
+    <p>Curso-taller cirugía robótica Hospital CIMA 9:00-1:00 pm &middot; 21 de abril &middot; Hermosillo, Sonora</p>
   </div>
-<p>Curso-taller cirugía robótica Hospital CIMA 9:00-1:00 pm &middot; 21 de abril &middot; Hermosillo, Sonora</p>
-</div>
 
   <div id="screen-clave" class="screen active">
     <div class="card">
@@ -104,7 +102,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
       <div class="input-wrap">
         <input type="text" id="input-clave" class="clave-input" placeholder="HELA-XXXXX"
           autocomplete="off" autocapitalize="characters" spellcheck="false" autofocus>
-        <button class="btn btn-primary" id="btn-acceder" onclick="verificarClave()">Acceder</button>
+        <button class="btn btn-primary" id="btn-acceder">Acceder</button>
       </div>
       <p class="hint">Ingresa la clave que recibiste en tu comprobante de carnet</p>
       <div id="loading-clave" class="loading-center" style="display:none">
@@ -128,7 +126,6 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     <div class="card" style="margin-bottom:16px">
       <p class="greeting" id="saludo"></p>
       <p class="greeting-sub">Este es un taller práctico, en el que se nos enseña cómo se maneja la innovadora máquina Da Vinci en el Hospital CIMA que es utilizada para cirugías un poco más complejas.</p>
-
     </div>
     <div id="loading-talleres" class="loading-center">
       <div class="spinner spinner-blue"></div>
@@ -168,15 +165,40 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 </div>
 
 <script>
+// ============================================================
+// URL de tu implementación de Apps Script
+// Si vuelves a crear una nueva implementación, actualiza esta línea
+// ============================================================
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOICwuJ4BRKsD19JYYyFnz4Hi1yU3Zq6cQ9ek7-5AClHfRVqrLnkbMNb0d9Uk7qUIc2g/exec';
+
+async function apiCall(params) {
+  var url = new URL(APPS_SCRIPT_URL);
+  Object.entries(params).forEach(function(e) { url.searchParams.set(e[0], e[1]); });
+  var resp = await fetch(url.toString(), { method: 'GET', redirect: 'follow' });
+  if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  var text = await resp.text();
+  try {
+    return JSON.parse(text);
+  } catch(e) {
+    console.error('Respuesta no JSON:', text.slice(0, 300));
+    throw new Error('Respuesta inesperada del servidor');
+  }
+}
+
 var claveActual = '';
 var nombreActual = '';
 var telefonoActual = '';
 var tallerSeleccionado = '';
 
+function escapeHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escapeSingle(str) {
+  return String(str).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+}
+
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(function(s) {
-    s.classList.remove('active');
-  });
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
 }
 
@@ -186,35 +208,33 @@ function setLoading(loading) {
   document.getElementById('loading-clave').style.display = loading ? 'flex' : 'none';
 }
 
-function verificarClave() {
+async function verificarClave() {
   var clave = document.getElementById('input-clave').value.trim().toUpperCase();
   if (!clave) { document.getElementById('input-clave').focus(); return; }
   claveActual = clave;
   document.getElementById('error-clave').style.display = 'none';
   document.getElementById('ya-inscrito').style.display = 'none';
   setLoading(true);
-
-  google.script.run
-    .withSuccessHandler(function(data) {
-      setLoading(false);
-      if (!data || data.msg === 'clave_invalida' || data.error) {
-        document.getElementById('error-clave').style.display = 'block';
-      } else if (data.msg === 'ya_inscrito') {
-        document.getElementById('taller-ya').textContent = data.taller || '';
-        document.getElementById('ya-inscrito').style.display = 'block';
-      } else if (data.ok) {
-        nombreActual = data.nombre || '';
-        telefonoActual = data.telefono || '';
-        document.getElementById('saludo').textContent = '¡Hola, ' + nombreActual + '!';
-        showScreen('screen-talleres');
-        cargarTalleres();
-      }
-    })
-    .withFailureHandler(function(err) {
-      setLoading(false);
+  try {
+    var data = await apiCall({ accion: 'verificar', clave: clave, modo: 'especial' });
+    setLoading(false);
+    if (!data || data.msg === 'clave_invalida' || data.error) {
       document.getElementById('error-clave').style.display = 'block';
-    })
-    .verificarClave(clave, 'especial');
+    } else if (data.msg === 'ya_inscrito') {
+      document.getElementById('taller-ya').textContent = data.taller || '';
+      document.getElementById('ya-inscrito').style.display = 'block';
+    } else if (data.ok) {
+      nombreActual = data.nombre || '';
+      telefonoActual = data.telefono || '';
+      document.getElementById('saludo').textContent = '¡Hola, ' + nombreActual + '!';
+      showScreen('screen-talleres');
+      cargarTalleres();
+    }
+  } catch(err) {
+    setLoading(false);
+    document.getElementById('error-clave').style.display = 'block';
+    console.error('verificarClave error:', err);
+  }
 }
 
 function reintentar() {
@@ -226,43 +246,41 @@ function reintentar() {
   input.focus();
 }
 
-function cargarTalleres() {
+async function cargarTalleres() {
   var grid = document.getElementById('grid-talleres');
   var loading = document.getElementById('loading-talleres');
   grid.innerHTML = '';
   loading.style.display = 'flex';
-
-  google.script.run
-    .withSuccessHandler(function(talleres) {
-      loading.style.display = 'none';
-      if (!talleres || !talleres.length) {
-        grid.innerHTML = '<p style="color:var(--text-muted);font-size:.9rem">No hay talleres disponibles.</p>';
-        return;
-      }
-      talleres.forEach(function(t, i) {
-        var libres = typeof t.libres !== 'undefined' ? t.libres : (t.cupo - t.ocupados);
-        var total = t.cupo || 0;
-        var ocupados = t.ocupados || 0;
-        var pct = total > 0 ? Math.round((ocupados / total) * 100) : 100;
-        var hayCupo = libres > 0;
-        var barClass = 'progress-bar' + (pct >= 100 ? ' lleno-bar' : pct >= 70 ? ' casi-lleno' : '');
-        var card = document.createElement('div');
-        card.className = 'taller-card' + (hayCupo ? '' : ' lleno');
-        card.style.animation = 'fadeUp .4s ease ' + (i * 0.05) + 's both';
-        card.innerHTML =
-          '<div class="taller-name">' + t.nombre + '</div>' +
-          '<div class="taller-slots"><strong>' + libres + '</strong> de ' + total + ' lugares</div>' +
-          '<div class="progress-track"><div class="' + barClass + '" style="width:' + pct + '%"></div></div>' +
-          (hayCupo
-            ? '<button class="btn btn-success" onclick="abrirModal(\'' + t.nombre.replace(/'/g,"\\'") + '\')">Seleccionar</button>'
-            : '<button class="btn btn-disabled" disabled>Sin cupo</button>');
-        grid.appendChild(card);
-      });
-    })
-    .withFailureHandler(function(err) {
-      loading.innerHTML = '<p style="color:var(--error);font-size:.9rem">Error al cargar talleres. Recarga la página.</p>';
-    })
-    .obtenerCupos('especial');
+  try {
+    var talleres = await apiCall({ accion: 'cupos', modo: 'especial' });
+    loading.style.display = 'none';
+    if (!talleres || !talleres.length) {
+      grid.innerHTML = '<p style="color:var(--text-muted);font-size:.9rem">No hay talleres disponibles.</p>';
+      return;
+    }
+    talleres.forEach(function(t, i) {
+      var libres = typeof t.libres !== 'undefined' ? t.libres : (t.cupo - t.ocupados);
+      var total = t.cupo || 0;
+      var ocupados = t.ocupados || 0;
+      var pct = total > 0 ? Math.round((ocupados / total) * 100) : 100;
+      var hayCupo = libres > 0;
+      var barClass = 'progress-bar' + (pct >= 100 ? ' lleno-bar' : pct >= 70 ? ' casi-lleno' : '');
+      var card = document.createElement('div');
+      card.className = 'taller-card' + (hayCupo ? '' : ' lleno');
+      card.style.animation = 'fadeUp .4s ease ' + (i * 0.05) + 's both';
+      card.innerHTML =
+        '<div class="taller-name">' + escapeHtml(t.nombre) + '</div>' +
+        '<div class="taller-slots"><strong>' + libres + '</strong> de ' + total + ' lugares</div>' +
+        '<div class="progress-track"><div class="' + barClass + '" style="width:' + pct + '%"></div></div>' +
+        (hayCupo
+          ? '<button class="btn btn-success" onclick="abrirModal(\'' + escapeSingle(t.nombre) + '\')">Seleccionar</button>'
+          : '<button class="btn btn-disabled" disabled>Sin cupo</button>');
+      grid.appendChild(card);
+    });
+  } catch(err) {
+    loading.innerHTML = '<p style="color:var(--error);font-size:.9rem">Error al cargar talleres. Recarga la página.</p>';
+    console.error('cargarTalleres error:', err);
+  }
 }
 
 function abrirModal(nombre) {
@@ -275,35 +293,41 @@ function cerrarModal() {
   document.getElementById('modal').classList.remove('active');
 }
 
-function confirmarInscripcion() {
+async function confirmarInscripcion() {
   var btn = document.getElementById('btn-confirmar');
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner"></div> Registrando…';
-
-  google.script.run
-    .withSuccessHandler(function(data) {
-      cerrarModal();
-      btn.disabled = false;
-      btn.innerHTML = 'Sí, confirmar';
-      if (data.msg === 'sin_cupo') {
-        alert('Este taller ya no tiene cupo. Por favor elige otro.');
-        cargarTalleres();
-      } else if (data.msg === 'ya_inscrito' || !data.ok) {
-        alert('Hubo un problema al registrarte. Intenta de nuevo.');
-      } else {
-        document.getElementById('exito-taller').textContent = tallerSeleccionado;
-        showScreen('screen-exito');
-      }
-    })
-    .withFailureHandler(function(err) {
-      cerrarModal();
-      btn.disabled = false;
-      btn.innerHTML = 'Sí, confirmar';
-      alert('Error de conexión. Intenta de nuevo.');
-    })
-    .inscribir(claveActual, tallerSeleccionado, nombreActual, telefonoActual, 'especial');
+  try {
+    var data = await apiCall({
+      accion: 'inscribir',
+      clave: claveActual,
+      taller: tallerSeleccionado,
+      nombre: nombreActual,
+      telefono: telefonoActual,
+      modo: 'especial'
+    });
+    cerrarModal();
+    btn.disabled = false;
+    btn.innerHTML = 'Sí, confirmar';
+    if (data.msg === 'sin_cupo') {
+      alert('Este taller ya no tiene cupo. Por favor elige otro.');
+      cargarTalleres();
+    } else if (data.msg === 'ya_inscrito' || !data.ok) {
+      alert('Hubo un problema al registrarte. Intenta de nuevo.');
+    } else {
+      document.getElementById('exito-taller').textContent = tallerSeleccionado;
+      showScreen('screen-exito');
+    }
+  } catch(err) {
+    cerrarModal();
+    btn.disabled = false;
+    btn.innerHTML = 'Sí, confirmar';
+    alert('Error de conexión. Intenta de nuevo.');
+    console.error('confirmarInscripcion error:', err);
+  }
 }
 
+document.getElementById('btn-acceder').addEventListener('click', verificarClave);
 document.getElementById('input-clave').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') verificarClave();
 });
